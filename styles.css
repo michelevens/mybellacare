@@ -117,7 +117,35 @@ img { max-width: 100%; display: block; }
   font-size: 14px; font-weight: 600;
   transition: all 0.2s;
 }
-.nav-cta:hover { background: var(--gold-hover); }
+/* Portal Login Buttons */
+.nav-portals {
+  display: flex; gap: 8px;
+}
+.nav-portal-btn {
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-size: 13px; font-weight: 600;
+  font-family: inherit;
+  transition: all 0.2s;
+  border: 2px solid transparent;
+}
+.nav-portal-btn.staff {
+  background: #059669; color: white;
+}
+.nav-portal-btn.staff:hover {
+  background: #047857;
+}
+.nav-portal-btn.client {
+  background: transparent; color: white;
+  border-color: rgba(255,255,255,0.4);
+}
+.nav-portal-btn.client:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: white;
+}
+.nav-links-portals {
+  display: none;
+}
 
 /* Hamburger */
 .hamburger {
@@ -798,7 +826,15 @@ img { max-width: 100%; display: block; }
   }
   .nav-links.open { display: flex; }
   .nav-links a { font-size: 20px; color: white; }
-  .nav-cta { display: none; }
+  .nav-portals { display: none; }
+  .nav-links-portals {
+    display: flex; gap: 12px;
+    margin-top: 16px;
+  }
+  .nav-links-portals .nav-portal-btn {
+    padding: 12px 28px;
+    font-size: 16px;
+  }
   .hamburger { display: flex; z-index: 1001; }
 
   /* Hero */
