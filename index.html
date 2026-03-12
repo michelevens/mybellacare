@@ -37,6 +37,7 @@
         <a href="#about">About</a>
         <a href="#staffing">Staffing</a>
         <a href="#careers">Careers</a>
+        <a href="#locations">Locations</a>
         <a href="#testimonials">Testimonials</a>
         <a href="#contact">Contact</a>
         <div class="nav-links-portals">
@@ -336,8 +337,72 @@
     </div>
   </section>
 
+  <!-- ═══ Locations ═══ -->
+  <section class="section section-alt" id="locations">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Where We Are</span>
+        <h2>Our Locations</h2>
+        <p>We operate care facilities across Central Florida — each providing specialized services in a warm, home-like environment.</p>
+      </div>
+      <div class="locations-grid">
+
+        <div class="location-card">
+          <div class="location-badge">Group Home</div>
+          <h3>Bella Group Home</h3>
+          <p class="location-address">719 East Magnolia Street<br>Apopka, FL 32703</p>
+          <p class="location-desc">Our dedicated group home facility providing 24/7 residential habilitation services for individuals with developmental and intellectual disabilities in a family-like setting.</p>
+          <div class="location-services">
+            <span class="tag">Residential Habilitation</span>
+            <span class="tag">24/7 Care</span>
+            <span class="tag">Life Skills</span>
+            <span class="tag">Community Integration</span>
+          </div>
+          <div class="location-actions">
+            <a href="https://maps.google.com/?q=719+East+Magnolia+Street+Apopka+FL+32703" target="_blank" class="btn btn-primary btn-sm">Get Directions</a>
+            <a href="tel:+14077962406" class="btn btn-outline-dark btn-sm">Call</a>
+          </div>
+        </div>
+
+        <div class="location-card">
+          <div class="location-badge alf">Assisted Living</div>
+          <h3>Bella Senior Living</h3>
+          <p class="location-address">417 Bayberry Lakes Blvd<br>Daytona Beach, FL 32124</p>
+          <p class="location-desc">Our assisted living facility offering compassionate senior care — medication management, meal preparation, personal hygiene assistance, social activities, and 24/7 staff supervision.</p>
+          <div class="location-services">
+            <span class="tag">Assisted Living Facility</span>
+            <span class="tag">Senior Care</span>
+            <span class="tag">Medication Mgmt</span>
+            <span class="tag">Social Activities</span>
+          </div>
+          <div class="location-actions">
+            <a href="https://maps.google.com/?q=417+Bayberry+Lakes+Blvd+Daytona+Beach+FL+32124" target="_blank" class="btn btn-primary btn-sm">Get Directions</a>
+            <a href="tel:+14077962406" class="btn btn-outline-dark btn-sm">Call</a>
+          </div>
+        </div>
+
+        <div class="location-card main-office">
+          <div class="location-badge office">Main Office</div>
+          <h3>Clearstone Group HQ</h3>
+          <p class="location-address">Clermont, FL 34711</p>
+          <p class="location-desc">Our corporate headquarters and administrative office — coordinating personal support, healthcare staffing, private duty nursing, and all service operations across Florida.</p>
+          <div class="location-services">
+            <span class="tag">Administration</span>
+            <span class="tag">Staffing Coordination</span>
+            <span class="tag">All Services</span>
+          </div>
+          <div class="location-actions">
+            <a href="tel:+14077962406" class="btn btn-primary btn-sm">Call (407) 796-2406</a>
+            <a href="mailto:info@mybellacare.com" class="btn btn-outline-dark btn-sm">Email</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ═══ Testimonials ═══ -->
-  <section class="section section-alt" id="testimonials">
+  <section class="section" id="testimonials">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">Client Testimonials</span>
@@ -603,7 +668,7 @@
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.service-card, .why-card, .testimonial-card, .about-card, .stat, .info-card, .career-card, .staffing-card, .partner-badge').forEach(el => {
+    document.querySelectorAll('.service-card, .why-card, .testimonial-card, .about-card, .stat, .info-card, .career-card, .staffing-card, .partner-badge, .location-card').forEach(el => {
       el.classList.add('reveal');
       observer.observe(el);
     });

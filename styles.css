@@ -617,6 +617,113 @@ img { max-width: 100%; display: block; }
 }
 
 /* ═══════════════════════════════════════════
+   LOCATIONS
+   ═══════════════════════════════════════════ */
+.locations-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.location-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  transition: all 0.3s;
+  position: relative;
+}
+.location-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+}
+.location-card.main-office {
+  background: linear-gradient(135deg, var(--teal-dark), var(--teal));
+  color: white;
+  border: none;
+}
+.location-card.main-office h3 { color: var(--gold); }
+.location-card.main-office .location-address,
+.location-card.main-office .location-desc { color: rgba(255,255,255,0.85); }
+.location-card.main-office .tag {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.9);
+}
+.location-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 12px; font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+  background: #ede9fe;
+  color: #5b21b6;
+}
+.location-badge.alf {
+  background: #dcfce7;
+  color: #166534;
+}
+.location-badge.office {
+  background: rgba(212,168,85,0.2);
+  color: var(--gold);
+}
+.location-card h3 {
+  font-size: 22px;
+  color: var(--teal-dark);
+  margin-bottom: 8px;
+}
+.location-address {
+  font-size: 15px;
+  color: var(--sage);
+  font-weight: 500;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.location-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+.location-services {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-bottom: 20px;
+}
+.location-actions {
+  display: flex; gap: 10px;
+}
+.btn-sm {
+  padding: 8px 20px;
+  font-size: 13px;
+  border-radius: 8px;
+}
+.btn-outline-dark {
+  background: transparent;
+  color: var(--teal-dark);
+  border: 2px solid var(--border);
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 13px; font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-outline-dark:hover {
+  border-color: var(--teal);
+  background: var(--light);
+}
+.location-card.main-office .btn-outline-dark {
+  color: white;
+  border-color: rgba(255,255,255,0.3);
+}
+.location-card.main-office .btn-outline-dark:hover {
+  border-color: white;
+  background: rgba(255,255,255,0.1);
+}
+
+/* ═══════════════════════════════════════════
    CONTACT
    ═══════════════════════════════════════════ */
 .contact-grid {
@@ -818,6 +925,7 @@ img { max-width: 100%; display: block; }
   .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
   .staffing-grid { grid-template-columns: repeat(2, 1fr); }
   .careers-grid { grid-template-columns: repeat(2, 1fr); }
+  .locations-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
@@ -860,6 +968,7 @@ img { max-width: 100%; display: block; }
   .testimonials-grid { grid-template-columns: 1fr; }
   .staffing-grid { grid-template-columns: 1fr; }
   .careers-grid { grid-template-columns: 1fr; }
+  .locations-grid { grid-template-columns: 1fr; }
   .contact-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .partners-row { gap: 12px; }
