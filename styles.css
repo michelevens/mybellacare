@@ -771,6 +771,15 @@ img { max-width: 100%; display: block; }
 }
 
 /* ═══════════════════════════════════════════
+   SHIFTPULSE WIDGET
+   ═══════════════════════════════════════════ */
+.widget-container {
+  margin-top: 40px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+/* ═══════════════════════════════════════════
    SCROLL REVEAL ANIMATIONS
    ═══════════════════════════════════════════ */
 .reveal {
