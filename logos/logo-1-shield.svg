@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="60" viewBox="0 0 240 60">
+  <!-- Shield icon -->
+  <path d="M30 6 L50 14 L50 30 Q50 46 30 54 Q10 46 10 30 L10 14 Z" fill="#1a2f3a"/>
+  <path d="M30 10 L46 16.5 L46 30 Q46 43 30 50 Q14 43 14 30 L14 16.5 Z" fill="#2C4A5A"/>
+  <!-- Heart in shield -->
+  <path d="M30 22 Q30 18 26 18 Q22 18 22 22 Q22 26 30 34 Q38 26 38 22 Q38 18 34 18 Q30 18 30 22Z" fill="#D4A855"/>
+  <!-- Text -->
+  <text x="62" y="30" font-family="Georgia, serif" font-size="24" font-weight="700" fill="#1a2f3a">Clear</text>
+  <text x="62" y="30" font-family="Georgia, serif" font-size="24" font-weight="700" fill="#1a2f3a">Clear<tspan fill="#4a7c6f">stone</tspan></text>
+  <text x="62" y="50" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#64748b" letter-spacing="3">GROUP</text>
+</svg>

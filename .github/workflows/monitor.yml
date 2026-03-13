@@ -1,0 +1,100 @@
+name: Site Monitor
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'  # Every 30 minutes
+  workflow_dispatch:         # Manual trigger
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check mybellacare.com
+        id: check
+        run: |
+          echo "=== Site Monitor — $(date -u '+%Y-%m-%d %H:%M UTC') ==="
+          echo ""
+
+          # ─── HTTP Status ───
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" --max-time 15 https://mybellacare.com)
+          echo "HTTP Status: $STATUS"
+
+          # ─── Response Time ───
+          RESPONSE_TIME=$(curl -s -o /dev/null -w "%{time_total}" --max-time 15 https://mybellacare.com)
+          echo "Response Time: ${RESPONSE_TIME}s"
+
+          # ─── SSL Certificate ───
+          SSL_EXPIRY=$(echo | openssl s_client -servername mybellacare.com -connect mybellacare.com:443 2>/dev/null | openssl x509 -noout -enddate 2>/dev/null | cut -d= -f2)
+          echo "SSL Expires: $SSL_EXPIRY"
+
+          # ─── Content Check ───
+          BODY=$(curl -s --max-time 15 https://mybellacare.com)
+          if echo "$BODY" | grep -q "Clearstone Group"; then
+            CONTENT="PASS"
+          else
+            CONTENT="FAIL — 'Clearstone Group' not found"
+          fi
+          echo "Content Check: $CONTENT"
+
+          # ─── Widget Script Check ───
+          if echo "$BODY" | grep -q "widget-loader.js"; then
+            WIDGET="PASS"
+          else
+            WIDGET="FAIL — widget embed missing"
+          fi
+          echo "Widget Embed: $WIDGET"
+
+          # ─── ShiftPulse Login Links ───
+          if echo "$BODY" | grep -q "shiftpulse.io"; then
+            LOGINS="PASS"
+          else
+            LOGINS="FAIL — ShiftPulse links missing"
+          fi
+          echo "Login Links: $LOGINS"
+
+          # ─── DNS Check ───
+          DNS_IPS=$(dig +short mybellacare.com A | sort | tr '\n' ' ')
+          echo "DNS A Records: $DNS_IPS"
+
+          # ─── www redirect ───
+          WWW_STATUS=$(curl -s -o /dev/null -w "%{http_code}" --max-time 10 https://www.mybellacare.com)
+          echo "www Status: $WWW_STATUS"
+
+          # ─── Service Worker ───
+          SW_STATUS=$(curl -s -o /dev/null -w "%{http_code}" --max-time 10 https://mybellacare.com/sw.js)
+          echo "Service Worker: $SW_STATUS"
+
+          # ─── Manifest ───
+          MANIFEST_STATUS=$(curl -s -o /dev/null -w "%{http_code}" --max-time 10 https://mybellacare.com/manifest.json)
+          echo "Manifest: $MANIFEST_STATUS"
+
+          echo ""
+          echo "=== Summary ==="
+
+          # ─── Determine overall status ───
+          if [ "$STATUS" = "200" ] && [ "$CONTENT" = "PASS" ]; then
+            echo "RESULT: ✅ ALL CHECKS PASSED"
+            echo "status=healthy" >> $GITHUB_OUTPUT
+          else
+            echo "RESULT: ❌ SITE DOWN OR DEGRADED"
+            echo "status=unhealthy" >> $GITHUB_OUTPUT
+          fi
+
+          # Store values for notification
+          echo "http_status=$STATUS" >> $GITHUB_OUTPUT
+          echo "response_time=$RESPONSE_TIME" >> $GITHUB_OUTPUT
+
+      - name: Alert on failure
+        if: steps.check.outputs.status == 'unhealthy'
+        run: |
+          echo "::error::mybellacare.com is DOWN or DEGRADED!"
+          echo "HTTP Status: ${{ steps.check.outputs.http_status }}"
+          echo "Response Time: ${{ steps.check.outputs.response_time }}s"
+          exit 1
+
+      - name: Log uptime
+        if: steps.check.outputs.status == 'healthy'
+        run: |
+          echo "mybellacare.com is healthy — ${{ steps.check.outputs.response_time }}s response time"

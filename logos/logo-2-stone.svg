@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="60" viewBox="0 0 260 60">
+  <!-- Rounded stone/gem shape -->
+  <rect x="6" y="6" width="48" height="48" rx="12" fill="#1a2f3a"/>
+  <!-- Inner facet lines (gem/stone) -->
+  <polygon points="30,12 46,24 42,46 18,46 14,24" fill="#2C4A5A"/>
+  <polygon points="30,16 42,26 38,42 22,42 18,26" fill="#3d6b7a" opacity="0.5"/>
+  <!-- CG monogram -->
+  <text x="30" y="36" text-anchor="middle" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#D4A855">CG</text>
+  <!-- Text -->
+  <text x="66" y="28" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#1a2f3a">Clearstone</text>
+  <text x="66" y="48" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#4a7c6f" letter-spacing="4">GROUP, LLC</text>
+</svg>

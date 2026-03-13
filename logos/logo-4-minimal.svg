@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="64" viewBox="0 0 280 64">
+  <!-- Rounded square with gradient feel -->
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="#1a2f3a"/>
+  <!-- Stylized C wrapping a stone -->
+  <path d="M42 18 Q26 18 22 32 Q26 46 42 46" fill="none" stroke="#D4A855" stroke-width="3" stroke-linecap="round"/>
+  <!-- Stone/dot -->
+  <circle cx="36" cy="32" r="6" fill="#4a7c6f"/>
+  <circle cx="36" cy="32" r="3" fill="#D4A855" opacity="0.6"/>
+  <!-- Text -->
+  <text x="72" y="28" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#1a2f3a">Clearstone</text>
+  <text x="72" y="48" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#4a7c6f" letter-spacing="4">GROUP</text>
+</svg>

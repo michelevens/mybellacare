@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="64" viewBox="0 0 280 64">
+  <!-- Circle background -->
+  <circle cx="32" cy="32" r="28" fill="#1a2f3a"/>
+  <!-- Caring hands holding a heart -->
+  <!-- Left hand -->
+  <path d="M18 36 Q18 28 24 26 L28 24" fill="none" stroke="#4a7c6f" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Right hand -->
+  <path d="M46 36 Q46 28 40 26 L36 24" fill="none" stroke="#4a7c6f" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Cupped hands bottom -->
+  <path d="M18 36 Q18 44 32 46 Q46 44 46 36" fill="none" stroke="#4a7c6f" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Heart -->
+  <path d="M32 28 Q32 24 28.5 24 Q25 24 25 28 Q25 32 32 37 Q39 32 39 28 Q39 24 35.5 24 Q32 24 32 28Z" fill="#D4A855"/>
+  <!-- Text -->
+  <text x="70" y="30" font-family="Georgia, serif" font-size="24" font-weight="700" fill="#1a2f3a">Clear<tspan fill="#4a7c6f">stone</tspan></text>
+  <text x="70" y="50" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#64748b" letter-spacing="4">GROUP, LLC</text>
+</svg>
