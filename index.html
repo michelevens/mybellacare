@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="description" content="Clearstone Group, LLC — Florida's trusted provider of Personal Support, Residential Habilitation, Companionship, Healthcare Staffing & Private Duty Nursing. Supporting APD clients and families since day one.">
   <meta name="keywords" content="clearstone group, personal support, residential habilitation, companionship, healthcare staffing, private duty nursing, home health aide, APD services, Florida, group home, DSP">
   <meta name="theme-color" content="#1a2f3a">
@@ -614,24 +614,94 @@
     </div>
   </footer>
 
+  <!-- ═══ Mobile Bottom Navigation Bar ═══ -->
+  <nav class="mobile-bottom-nav" id="mobile-bottom-nav">
+    <a href="#home" class="bottom-nav-item active" data-section="home">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>Home</span>
+    </a>
+    <a href="#services" class="bottom-nav-item" data-section="services">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      <span>Services</span>
+    </a>
+    <a href="tel:+14074627233" class="bottom-nav-item bottom-nav-cta">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+      <span>Call</span>
+    </a>
+    <a href="#careers" class="bottom-nav-item" data-section="careers">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+      <span>Careers</span>
+    </a>
+    <a href="#contact" class="bottom-nav-item" data-section="contact">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+      <span>Contact</span>
+    </a>
+  </nav>
+
+  <!-- ═══ Back to Top ═══ -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
   <script>
     // ─── Navbar scroll effect ───
     const navbar = document.getElementById('navbar');
+    const backToTop = document.getElementById('back-to-top');
+    let lastScrollY = 0;
+    let ticking = false;
+
+    function onScroll() {
+      const scrollY = window.scrollY;
+      navbar.classList.toggle('scrolled', scrollY > 50);
+
+      // Back to top visibility
+      if (backToTop) {
+        backToTop.classList.toggle('visible', scrollY > 600);
+      }
+
+      // Update active bottom nav item
+      updateActiveNav();
+
+      lastScrollY = scrollY;
+      ticking = false;
+    }
+
     window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 50);
-    });
+      if (!ticking) {
+        requestAnimationFrame(onScroll);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // ─── Back to top click ───
+    if (backToTop) {
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
 
     // ─── Mobile menu toggle ───
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('nav-links');
     hamburger.addEventListener('click', () => {
+      const isOpen = navLinks.classList.contains('open');
       hamburger.classList.toggle('active');
-      navLinks.classList.toggle('open');
+      if (isOpen) {
+        navLinks.classList.remove('open');
+        document.body.style.overflow = '';
+      } else {
+        navLinks.style.display = 'flex';
+        // Force reflow for transition
+        navLinks.offsetHeight;
+        navLinks.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
     });
     navLinks.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', () => {
         hamburger.classList.remove('active');
         navLinks.classList.remove('open');
+        document.body.style.overflow = '';
       });
     });
 
@@ -639,23 +709,50 @@
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', e => {
         e.preventDefault();
-        const target = document.querySelector(anchor.getAttribute('href'));
+        const href = anchor.getAttribute('href');
+        if (href === '#') { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+        const target = document.querySelector(href);
         if (target) {
-          const offset = 80;
+          const offset = 70;
           const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
           window.scrollTo({ top: y, behavior: 'smooth' });
         }
       });
     });
 
+    // ─── Bottom nav active state tracking ───
+    const sections = ['home', 'services', 'careers', 'contact'];
+    const bottomNavItems = document.querySelectorAll('.bottom-nav-item[data-section]');
+
+    function updateActiveNav() {
+      let current = 'home';
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 150) current = id;
+        }
+      }
+      bottomNavItems.forEach(item => {
+        item.classList.toggle('active', item.dataset.section === current);
+      });
+    }
+
     // ─── Contact form handler ───
     function handleContactSubmit(e) {
       e.preventDefault();
       const form = e.target;
       const success = document.getElementById('form-success');
-      success.style.display = 'block';
-      form.reset();
-      setTimeout(() => { success.style.display = 'none'; }, 5000);
+      const btn = form.querySelector('button[type="submit"]');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      setTimeout(() => {
+        success.style.display = 'block';
+        form.reset();
+        btn.textContent = 'Send Message';
+        btn.disabled = false;
+        setTimeout(() => { success.style.display = 'none'; }, 5000);
+      }, 800);
     }
 
     // ─── Scroll reveal animation ───
@@ -666,7 +763,7 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
     document.querySelectorAll('.service-card, .why-card, .testimonial-card, .about-card, .stat, .info-card, .career-card, .staffing-card, .partner-badge, .location-card').forEach(el => {
       el.classList.add('reveal');
