@@ -978,6 +978,50 @@ img { max-width: 100%; display: block; }
 .bottom-nav-item.bottom-nav-cta svg { width: 26px; height: 26px; }
 
 /* ═══════════════════════════════════════════
+   FLOATING STAFF CLOCK-IN BUTTON
+   ═══════════════════════════════════════════ */
+.fab-clockin {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 910;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  background: linear-gradient(135deg, #059669, #047857);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 4px 20px rgba(5,150,105,0.4), 0 0 0 0 rgba(5,150,105,0.3);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  -webkit-tap-highlight-color: transparent;
+  animation: fab-pulse 3s ease-in-out infinite;
+}
+.fab-clockin:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 28px rgba(5,150,105,0.5);
+}
+.fab-clockin:active {
+  transform: scale(0.96);
+}
+.fab-clockin svg {
+  flex-shrink: 0;
+}
+.fab-clockin-label {
+  white-space: nowrap;
+}
+@keyframes fab-pulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(5,150,105,0.4), 0 0 0 0 rgba(5,150,105,0.3); }
+  50% { box-shadow: 0 4px 20px rgba(5,150,105,0.4), 0 0 0 8px rgba(5,150,105,0); }
+}
+
+/* ═══════════════════════════════════════════
    BACK TO TOP
    ═══════════════════════════════════════════ */
 .back-to-top {
@@ -1236,7 +1280,14 @@ img { max-width: 100%; display: block; }
 
   /* ─── Mobile Bottom Nav & Floating elements ─── */
   .mobile-bottom-nav { display: flex; }
-  .back-to-top { display: flex; bottom: 80px; }
+  .fab-clockin {
+    bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+    right: 16px;
+    padding: 12px 18px;
+    font-size: 13px;
+    border-radius: 50px;
+  }
+  .back-to-top { display: flex; bottom: calc(76px + env(safe-area-inset-bottom, 0px)); left: 16px; }
   /* Extra padding at bottom so footer isn't hidden behind bottom nav */
   .footer-bottom {
     padding-bottom: calc(24px + 72px);
@@ -1333,7 +1384,7 @@ img { max-width: 100%; display: block; }
   .footer-bottom {
     padding-bottom: calc(24px + env(safe-area-inset-bottom));
   }
-  .mobile-fab {
+  .fab-clockin {
     bottom: calc(24px + env(safe-area-inset-bottom));
     right: calc(24px + env(safe-area-inset-right));
   }
